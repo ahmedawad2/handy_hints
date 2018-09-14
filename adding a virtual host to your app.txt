@@ -1,0 +1,79 @@
+this note is about adding a virtual host to your app,
+assuming you're using apache2 on ubuntu 16, you can follow along with this.
+
+1) first, create an entry index to your app, may be:
+
+touch /var/www/html/myApp/index.html
+- this is my entry point.
+
+by default, apache comes with a 000-default.conf file, inside /etc/apache2/sites-available.
+
+2) you can copy this file, rename it to refer to your app virtual host,
+may be: myApp.conf.
+now if you open this file, you may find somethign like this:
+
+<VirtualHost *:80>
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request's Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	#ServerName www.example.com
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with "a2disconf".
+	#Include conf-available/serve-cgi-bin.conf
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+
+we might be interested in these terms so far: ServerAdmin DocumentRoot ServerName.
+3) so edit them in your newly created myApp.conf file, may be something like this:
+
+ServerAdmin webmaster@localhost
+DocumentRoot /var/www/html/myApp
+ServerName myApp.local
+- you can also change the default port number 80 if it fits.
+
+NOTE: stay away from the .com, .dev, .net, and those commonly used ones, it may leads to unexpected results,
+like tryign to fetch your local app using https:// insted of http://.
+use descriptive ones to your local development, after all .local is a good choice.
+
+4) save your new file, and you've to enable this configuration to apache.
+sudo a2ensite myApp.conf
+
+5) restart apache2, and it's all set from the apache2 side.
+sudo systemctl restart apache2
+
+6) a one final step is to add your myApp.local into the hosts file of your OS.
+if you're using ubuntu 16, this file is inside /etc/hosts.
+it contains somethong like:
+
+127.0.0.1	localhost
+127.0.1.1	ahmedPC
+
+you now can attach the default apache IP: 127.0.0.1 to refer to another domain myApp.local
+just add this line:
+
+127.0.0.1	myApp.local
+
+after restarting your apache, it's all set by now.
+try to open a browser, navigate to : http://myApp.local.
+and it's supposed to be working.
