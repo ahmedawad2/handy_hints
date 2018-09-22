@@ -35,13 +35,13 @@ npm install -g parse-server
 so that you can run parse server, dashboard globally.
 discussion: https://github.com/parse-community/parse-server/issues/4686
 
-6)to install dashboard
+6) to install dashboard
 follow along with this:
 https://tecadmin.net/setup-parse-dashboard-on-ubuntu/
 
 7) now you can test everything by trying for e.g:
 
-tart parse server :
+start parse server :
 
 parse-server --appId myAppId --masterKey KSJFKKJ3K4JK3J4K3JUWE89ISDJHFSJDFS --databaseURI mongodb://localhost/parse
 
