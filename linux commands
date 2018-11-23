@@ -1,0 +1,6 @@
+1)change all the directories permissions inside /home/folder to 755 (drwxr-xr-x):
+sudo find /home/folder -type d -exec chmod 755 {} \;
+=====================
+2)change all the files permissions inside /home/folder to 644 (rw-r--r--):
+sudo find /home/folder -type f -exec chmod 644 {} \;
+=====================
