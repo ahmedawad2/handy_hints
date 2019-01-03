@@ -1,0 +1,9 @@
+to install a .deb file:
+1) sudo dpkg -i /path
+2) sudo apt install ./name.deb
+3) sudo apt install /path
+* after this, you must use: sudo apt-get install -f, When dpkg install a package and package dependency is not satisfied, it leaves the package in 
+unconfigured state and that package is considered as broken.
+sudo apt-get install -f command tries to fix this broken package by installing the missing dependency.
+=========================
+
