@@ -1,0 +1,13 @@
+assume you have a current git repo that is HTTPS's associated to a local project.
+and that you need to use ssh in the process.
+
+1) generate a new ssh key in your directory of choise, name of your choise:
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f $HOME/.ssh/id_rsa
+2) add your ssh public key to your git host account, e.g: github, or gitlab.
+3) re-set the URL of your remote repo:
+   (1) copy the clone ssh version of your remote repo.
+   (2) navigate to your local project, assuming your remote is called origin:
+   git remote set-url origin git@gitlab.com:someuser/somerepo.git
+   (3) now you have to add the newly craeted ssh key into your ssh agent( if it's still not working)
+   eval "$(ssh-agent -s)"
+   ssh-add /path/to/private/sshKey
