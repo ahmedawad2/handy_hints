@@ -7,3 +7,23 @@ unconfigured state and that package is considered as broken.
 sudo apt-get install -f command tries to fix this broken package by installing the missing dependency.
 =========================
 
+How to add a directory to the PATH?
+PATH is an enviroment variable. It basically tells your machine where to search for programs.
+(1)
+Edit ~/.profile:
+find the following line:
+PATH="$HOME/bin:$PATH"
+and change it to:
+PATH="$HOME/bin:$PATH:/your/new/path"
+
+(2)
+Run the command below in the terminal:
+export PATH=$PATH:/your/new/path
+=========================
+
+download a file from server:
+scp your_username@remotehost.edu:foobar.txt /local/dir
+scp -i key_file.pem your_username@remotehost.edu:/remote/dir/foobar.txt /local/dir (if you're using ssh)
+=========================
+
+
