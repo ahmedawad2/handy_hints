@@ -1,0 +1,55 @@
+this file shall help follow along with installing and configuring parse server,
+and parse dashboard locally.
+for instance, you can use either of these links or follow along.
+
+https://tecadmin.net/install-parse-server-on-ubuntu/
+Or
+https://medium.com/@at0dd/parse-server-and-dashboard-on-ubuntu-4d66b8cdbd84
+
+===================================
+
+first of all you shall have mongo server installed and working fine.
+if not, go install it first.
+there's a lot of links that helps doing so.
+this is one of them:
+https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
+
+1) install python-software-properties package if not installed already.
+sudo apt-get install build-essential git python-software-properties
+
+2) install nodeJs
+can follow instructions on this link, try to stick to recent (stable) releases.
+https://websiteforstudents.com/install-the-latest-node-js-and-nmp-packages-on-ubuntu-16-04-18-04-lts/
+
+3) now you can install and configure parse using instructions on either links:
+https://tecadmin.net/install-parse-server-on-ubuntu/
+Or
+https://medium.com/@at0dd/parse-server-and-dashboard-on-ubuntu-4d66b8cdbd84
+
+4) to start it:
+sudo npm start
+make sure you are in the current installation folder while executing this command.
+
+5) to get parse commands available, run:
+npm install -g parse-server
+so that you can run parse server, dashboard globally.
+discussion: https://github.com/parse-community/parse-server/issues/4686
+
+6) to install dashboard
+follow along with this:
+https://tecadmin.net/setup-parse-dashboard-on-ubuntu/
+
+7) now you can test everything by trying for e.g:
+
+start parse server :
+
+parse-server --appId myAppId --masterKey KSJFKKJ3K4JK3J4K3JUWE89ISDJHFSJDFS --databaseURI mongodb://localhost/parse
+
+===================================
+
+start parse dashboard :
+
+parse-dashboard --appId myAppId --masterKey KSJFKKJ3K4JK3J4K3JUWE89ISDJHFSJDFS --serverURL "http://localhost:1337/parse" --appName appName
+
+===================================
+

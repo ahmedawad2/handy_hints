@@ -1,0 +1,47 @@
+this will help connecting to a remote Mysql DB using yout locally installed phpMyAdmin.
+assuming you have phpMyAdmin installed and working fine on your local server, we only need to change
+the phpMyAdmin configuration file that holds servers information.
+we actually will add another set of configuration to the file, so we can connect to multiple servers.
+
+the configuration file is located on : /etc/phpmyadmin/config.inc.php
+
+you will need to add these set of configuration to the end of the file (most preferable place):
+
+$i++; //incrementing variable for each server. 
+
+
+$cfg['Servers'][$i]['host'] = ''; //server name or IP.
+
+
+$cfg['Servers'][$i]['port'] = ''; //MySql port, default is 3306.
+
+
+$cfg['Servers'][$i]['socket'] = '';//path to socket, leave blank for default.
+
+
+$cfg['Servers'][$i]['connect_type'] = '';//tcp or socket.
+
+
+$cfg['Servers'][$i]['extension'] = 'mysqli';//php MySql extension to use, mysql or mysqli.
+
+
+$cfg['Servers'][$i]['compress'] = false;//Use compressed protocol for the MySQL connection (requires PHP >= 4.3.0)
+
+
+$cfg['Servers'][$i]['auth_type'] = 'cookie';//method of authentication, use cookie.
+
+
+$cfg['Servers'][$i]['user'] = '';//username
+
+
+$cfg['Servers'][$i]['password'] = '';//password.
+
+For more info on the config options, please visit the official documentation provided by phpMyAdmin.
+https://docs.phpmyadmin.net/en/latest/
+
+========================
+
+Many hosting companies do not allow remote database access by default, so first check with your hosting company and enable this feature. some hosting companies, allows to define a list of IP addresses that are allowed to connect to the remote database server.
+
+By using this setup to access your remote database, you need to know that it can become a security issue, if your machine is breached, as the credentials are stored in clear text in the config file. This makes your database as secure as your localhost machine.
+
