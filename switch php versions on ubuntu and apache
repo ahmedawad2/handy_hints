@@ -1,0 +1,15 @@
+consider installing 2 different php versions, e.g: 7.1, 7.2 on your machine,
+with each version have all it's php extensions installed,
+and consider using apache server.
+you can switch using both version in 2 steps:
+1) switch the php module running on apache:
+sudo a2dismod php7.1 
+sudo a2enmod  php7.2
+sudo service apache2 restart
+then,
+2) update the php version that your ubuntu machine consider's:
+sudo update-alternatives --config php
+this will get you all installed versions to select, or keep the current version.
+after doing so, restart your apache, then make sure that the version is switched by running:
+php -v
+=============
