@@ -33,4 +33,8 @@ and to stop any running proccess, use:
 kill proccess_number
 =========================
 
-
+List the installed Packages, e.g : installed PostgreSQL Packages:
+dpkg -l | grep postgres
+and to remove any of them (must be installed via apt):
+sudo apt-get --purge remove <package_name>
+=========================
