@@ -13,3 +13,9 @@ this will get you all installed versions to select, or keep the current version.
 after doing so, restart your apache, then make sure that the version is switched by running:
 php -v
 =============
+
+PHP Version for Ubuntu:
+update-alternatives --config php
+
+you'll be shown multiple options, select your version of choise.
+test the result with: php -v
