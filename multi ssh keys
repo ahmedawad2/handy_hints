@@ -1,0 +1,79 @@
+This is all gathered from website and stackoverflow, hope this helps who are new to ssh
+
+so you can have many ssh keys
+
+~/.ssh$ ls
+yyy_id_rsa  yyy_id_rsa.pub  id_rsa  id_rsa.pub  known_hosts
+Note: we need to add then to the ssh-agent, probably id_rsa will be added so we need to add the other private key
+
+~/.ssh$ ssh-add yyy_id_rsa
+now we have added both ssh keys to ssh-agent
+
+we have one for bitbucket and one for github
+
+so we create a config file like this
+
+~/.ssh$ nano config
+Host bit-yyyuser bitbucket.org
+Hostname bitbucket.org
+IdentityFile ~/.ssh/yyy_id_rsa
+User yyyuser
+
+Host bit-xxxuser bitbucket.org
+Hostname bitbucket.org
+IdentityFile ~/.ssh/id_rsa
+User xxxuser
+
+Host git-xxxuser github.com
+Hostname github.com
+IdentityFile ~/.ssh/id_rsa
+User xxxuser
+Note: I am using 2 different keys for 2 different account on bitbucket and one for github.
+
+Now we need to tell the git repository which host to use so that I will get that specific ssh key for that specific account
+
+change git@bitbucket.orgyyyuser/yyyproject.git to git@bit-yyyuser:yyyuser/yyyproject.git
+
+so in the project folder and add the remote url
+
+/var/www/yyyproject$ git remote add bit git@bit-yyyuser:yyyuser/yyyproject.git
+in other project
+
+/var/www/xxxproject$ git remote add bitt git@bit-xxxuser:xxxuser/xxxproject.git
+now you can use push and pull easily
+
+:/var/www/yyyproject$ git pull bit master
+From bit-yyyuser:yyyuser/yyyproject
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+:/var/www/yyyproject$
+and another project
+
+/var/www/xxxproject$ git push bitt ver1
+To git@bit-xxxuser:xxxuser/xxxproject.git
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+:/var/www/xxxproject$ 
+now I dont have the github project on the local machine so we need to clone the project but we need to make a little change to the url to clone
+
+our url is like this
+
+git@github.com:xxxuser/python.git
+as we have to clone it with specific keys we just need to change the host name with the host we have defined
+
+git@git-xxxuser:xxxuser/python.git
+as defined in the config file
+
+and now we can clone
+
+:/var/www/us$ git clone git@git-xxxuser:xxxuser/python.git
+Cloning into 'python'...
+remote: Counting objects: 75, done.
+remote: Compressing objects: 100% (42/42), done.
+remote: Total 75 (delta 18), reused 62 (delta 8)
+Receiving objects: 100% (75/75), 6.29 KiB, done.
+Resolving deltas: 100% (18/18), done.
+:/var/www/us$ 
+we have identified different ssh keys for different host, one for git and one for bitbucket now the system knows which ssh keys to be used with which host.
+
+Now we can easily pull, push.
