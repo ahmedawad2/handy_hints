@@ -44,3 +44,12 @@ https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu
 ==========================
 
 make ubuntu faster: https://itsfoss.com/speed-up-ubuntu-1310/
+==========================
+
+turning off bluetooth and wireless coexistence:
+sudo tee /etc/modprobe.d/iwlwifi-opt.conf <<< "options iwlwifi bt_coex_active=N"
+then reboot.
+
+This setting can be always undone by
+sudo rm /etc/modprobe.d/iwlwifi-opt.conf
+==========================
