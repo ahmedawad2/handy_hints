@@ -41,5 +41,21 @@ cat /etc/group
 this way, any file that you creates will belong to the <groupName> by default.
 =====================
 
+5) output redirection is made via > sign.
+it overrites the file, if you want to append, use the >> sign instead.
+everytime you use a terminal to manipulate a file, 3 file are always open:
+standard input (STDIN) FD0 -> default: keyboard
+standard output (STDOUT) FD1 -> default: screen
+standard error FD2 (STDERR) -> default: screen
 
+- using > is meand by default that you are redirecting the output.
+e.g: cat file1 > file2
+read file1 and place the output in file2.
+e.g: telnet localhost 2>errorFile
+execute telnet localhost command, and redirect the errors to errorFile instead of the screen( which is the default standard output).
+e.g: ls Documenst Downloads > listing 2>&1
+execute ls Documenst Downloads, redirect the standard output to listing,
+redirect the error to &1, which is the standard output, which in turn is rdirected to listing.
+e.g: ls Documenst Downloads handy_hints > demo 2>&1 -> specific for my machine, run when you're in Desktop to test results.
+=====================
 
