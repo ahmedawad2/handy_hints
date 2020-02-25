@@ -59,3 +59,13 @@ redirect the error to &1, which is the standard output, which in turn is rdirect
 e.g: ls Documenst Downloads handy_hints > demo 2>&1 -> specific for my machine, run when you're in Desktop to test results.
 =====================
 
+6) environment variables:
+- variables are case sensitive.
+- echo $varName -> get it's value
+- export varName=varValue, or simply: varName=varValue -> set a variable, NOTE: no spaces.
+- unset varName -> deletes a variable.
+- env -> lists all environment variables.
+- some common env variables: PATH, HOME, LANG, USER, EDITOR, SHELL.
+- PATH: is a : separated list of all paths to search for executable programs.
+=====================
+
