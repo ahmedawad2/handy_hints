@@ -1,6 +1,45 @@
 1)change all the directories permissions inside /home/folder to 755 (drwxr-xr-x):
 sudo find /home/folder -type d -exec chmod 755 {} \;
 =====================
+
 2)change all the files permissions inside /home/folder to 644 (rw-r--r--):
 sudo find /home/folder -type f -exec chmod 644 {} \;
 =====================
+
+3) users in unix based system are: user(u), group(g), and other(o).
+you can change and file permissons using chmod command in 2 ways:
+1- absolute(numeric) mode -> 0 to 7 digit for each king of users.
+e.g: chmod test 764
+this gives:
+user -> rwx access
+group: rw access
+other: r access
+the weight of digits is:
+r -> 4
+w -> 2
+x -> 1
+and - indicates no permission at all.
+2- symbolic mode -> makes use of (+, -, =) to manipulate the permissions of a specific user only.
+e.g: chmod a=rwx test
+this sets all permissons for all(a) users to rwx.
+e.g: chmod g+x test
+this adds execute permisson of the group(g) users.
+a.g: chmod o-r test
+and this removes the read permisson from the other(o) users.
+=====================
+
+4) you can change the file owner, group of any file using the chown command as follows:
+sudo chown <user>:<group> fileName
+e.g: chown root:ahmed test
+this makes root, the owner of the test file, and the group user of the same file: ahmed.
+
+- if you want to only change the group users, use chgrp command instead, with the same way.
+- all groups in the OS are saved into /etc/group
+cat /etc/group
+- the groups command lists all groups that the current user is a member of.
+- to change the default group that you are a member of, use the: newgrp <groupName> command.
+this way, any file that you creates will belong to the <groupName> by default.
+=====================
+
+
+
