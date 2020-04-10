@@ -53,3 +53,8 @@ then reboot.
 This setting can be always undone by
 sudo rm /etc/modprobe.d/iwlwifi-opt.conf
 ==========================
+
+add another display configuration:
+http://ubuntuhandbook.org/index.php/2017/04/custom-screen-resolution-ubuntu-desktop/
+==========================
+
