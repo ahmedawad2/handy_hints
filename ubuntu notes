@@ -57,5 +57,11 @@ sudo rm /etc/modprobe.d/iwlwifi-opt.conf
 add another display configuration:
 http://ubuntuhandbook.org/index.php/2017/04/custom-screen-resolution-ubuntu-desktop/
 https://askubuntu.com/questions/19954/how-to-set-the-monitor-to-its-native-resolution-which-is-not-listed-in-the-resol?lq=1
+
+commands matching my laptop ASUS TUF FX505GT case in ubuntu 18:
+
+xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+xrandr --addmode eDP-1 1600x900_60.00
+xrandr --output eDP-1 --mode 1600x900_60.00
 ==========================
 
