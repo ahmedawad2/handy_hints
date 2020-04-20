@@ -1,0 +1,13 @@
+Installing Guest Additions on Ubuntu Guest:
+on your guest ubuntu, run:
+sudo apt update
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+
+then click Devices -> Insert Guest Additions CD Image.
+the CD shall be mounted directly, if not, search how to ount it.
+finally, run the VBoxLinuxAdditions.run script to install the Guest Additions( which is supposed to run directly also).
+reboot.
+
+after that you can directly share folders from your host OS to your ubuntu guest one.
+to be able to fully access the shared files, add your guest OS user to the vboxsf group, then reboot or log off.
+===================== 
