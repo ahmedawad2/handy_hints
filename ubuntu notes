@@ -69,3 +69,16 @@ xrandr --output eDP-1 --mode 1600x900_60.00
 add these commands to the .profile file for persisting the new added display mode.
 ==========================
 
+backup and restore:
+installed apt packages:
+sudo apt install apt-clone
+sudo apt-clone clone dir/to/save/into
+this will create a file: apt-clone-state-ubuntuserver.tar.gz under dir/to/save/into directory.
+now you can use the created file in the new OS( has to be the same OS, same arch), and run:
+sudo apt-clone restore apt-clone-state-ubuntuserver.tar.gz
+
+another useful link for: backup settings and list of installed packages, is here:
+https://askubuntu.com/questions/9135/how-to-backup-settings-and-list-of-installed-packages
+and here
+https://unix.stackexchange.com/questions/190853/backup-and-restore-list-of-installed-packages-and-apt-sources
+
