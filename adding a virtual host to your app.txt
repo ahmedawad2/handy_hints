@@ -77,3 +77,4 @@ just add this line:
 after restarting your apache, it's all set by now.
 try to open a browser, navigate to : http://myApp.local.
 and it's supposed to be working.
+
