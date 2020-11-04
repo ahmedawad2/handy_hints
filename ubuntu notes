@@ -83,6 +83,13 @@ and here
 https://unix.stackexchange.com/questions/190853/backup-and-restore-list-of-installed-packages-and-apt-sources
 ==========================
 
-if a mounted drive is in a read only, try to remoun it by:
+if a mounted drive is in a read only, try to remount it by:
 sudo mount -o remount,rw /path/to/drive
+==========================
+
+to watch the CPU cores clock speed:
+watch -n.1 "cat /proc/cpuinfo | grep \"^[c]pu MHz\""
+==========================
+
+
 
