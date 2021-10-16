@@ -9,4 +9,3 @@ Right-click the Windows Start Menu once more. Choose Command Prompt (Admin).
 Type this command and press ENTER: bcdedit /deletevalue {current} safeboot (ALT: bcdedit /deletevalue safeboot)
 Reboot once more and Windows will automatically start with AHCI drivers enabled.
 =============================
-
