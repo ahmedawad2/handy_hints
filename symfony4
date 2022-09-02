@@ -1,0 +1,47 @@
+use:
+1- symfony web-skeleton for a normal web app.
+2- symfony skeleton for micro service, API, or a console app.
+====
+can use php's internal server for development, but symfony recommends using a better server using:
+composer require server
+then run it using:
+bin/console server:run
+the bin/console command is like the laravel artisan command.
+====
+recommended plugins for symfony in phpstorm:
+symfony support( which needs to be enable for each project).
+php annotations
+php toolbox
+====
+routes normally resided into config/routes.yaml file, it's something like:
+index:
+    path: /
+    controller: App\Controller\DefaultController::homaPage
+but you can also use annotations to write routes directly inside the controller, above each action method.
+to start using annotations, you have to require it:
+composer require annotations
+then for e.g to make a route:
+/**
+ * @Route("/")
+ */
+and for a wildcard routes, you can use /{something}, e.g:
+/**
+* @Route("/articles/{slug}")
+*/
+consider that you can match the following with routes:
+regex
+HTTP methods
+host names
+====
+symfony flex:
+is a composer plugin that can do 2 things:
+1- aliasing a package, e.g:
+composer require sec-checker
+this actually requires sensiolabs/security-checker package, but with an alias name, which flex can resolve.
+you'll notice a changes to the file: "symfony.lock", this file is managed by flex, keeping track of all recipes that have been installed.
+2- manage and run recipes.
+recipes can add configuration files, create directories, or even modify some files like .gitignore to straighten the usage of
+some package without any further configuring.
+for e.g: the recipe included with sec-checker adds some new script to composer.json file,
+so that whenever you install a new package, it will run this script to check for package vulnerabilities.
+flex can also remove recipes when you un install some package.
