@@ -45,3 +45,13 @@ some package without any further configuring.
 for e.g: the recipe included with sec-checker adds some new script to composer.json file,
 so that whenever you install a new package, it will run this script to check for package vulnerabilities.
 flex can also remove recipes when you un install some package.
+====
+Twig:
+can be imported using:
+composer require twig
+this will add some bunch of files and directories to your project, e.g:
+1- /config/bundles.php
+bundles are the plugin system for symfony, and whenever you require one, flex add it here to be used directly.
+2- /templates directory
+the path of this is totally configured from:
+3- /config/packages/twig.yaml
