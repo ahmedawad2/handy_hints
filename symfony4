@@ -2,17 +2,20 @@ use:
 1- symfony web-skeleton for a normal web app.
 2- symfony skeleton for micro service, API, or a console app.
 ====
+
 can use php's internal server for development, but symfony recommends using a better server using:
 composer require server
 then run it using:
 bin/console server:run
 the bin/console command is like the laravel artisan command.
 ====
+
 recommended plugins for symfony in phpstorm:
 symfony support( which needs to be enable for each project).
 php annotations
 php toolbox
 ====
+
 routes normally resided into config/routes.yaml file, it's something like:
 index:
     path: /
@@ -26,13 +29,14 @@ then for e.g to make a route:
  */
 and for a wildcard routes, you can use /{something}, e.g:
 /**
-* @Route("/articles/{slug}")
+* @Route("/articles/{slug}", name="showArticle")
 */
 consider that you can match the following with routes:
 regex
 HTTP methods
 host names
 ====
+
 symfony flex:
 is a composer plugin that can do 2 things:
 1- aliasing a package, e.g:
@@ -46,6 +50,7 @@ for e.g: the recipe included with sec-checker adds some new script to composer.j
 so that whenever you install a new package, it will run this script to check for package vulnerabilities.
 flex can also remove recipes when you un install some package.
 ====
+
 Twig:
 can be imported using:
 composer require twig
@@ -53,5 +58,56 @@ this will add some bunch of files and directories to your project, e.g:
 1- /config/bundles.php
 bundles are the plugin system for symfony, and whenever you require one, flex add it here to be used directly.
 2- /templates directory
-the path of this is totally configured from:
+the path of this is totally configured (among other things) from:
 3- /config/packages/twig.yaml
+====
+
+Twig files are mostly named of the form: 'something.html.twig',
+and has to reside in the templates directory.
+it has 3 syntax:
+1- {{ }}
+2- {% %}
+3- {# #}
+to render a template from a controller, you'll likely extend "AbstractController" from symfony bundle,
+it's not needed, but it gives some helper methods, like:
+$this->render('path_to_file_discarding_base_templates_dir', [parameters])
+====
+
+symfony packs gather some libraries together in a single call, e.g:
+composer require debug
+this will install the debug-pack package, which includes about 6 other libraries.
+debug-pack itself is just a composer.json file, that contains them all.
+you can not however control the version of a single one of those, or even remove only a single library,
+solution is to unpack the pack, then do whatever needed, e.g:
+composer unpack debug
+this removed the main debug-pack package, and add it's contents individually, allowing you to control every single aspect.
+====
+
+when using Twig along with some JS,CSS or images files, BEWARE that sometimes you'll need to remove the:
+var/cache/dev/*
+var/cache contains symfony's cached files, including templates.
+whenever refer to internal file of those, remember wrapping it inside: asset() function,
+which you'll need to:
+composer require asset
+this installs the symfony asset component.
+====
+
+bin/console debug:router
+this prints all the app routes.
+when using annotations in routes, a name is automatically generated for our routes, you should not depend on this generation
+as changing some code parts would change the name generated, breaking all references to this specific route name.
+the path('route_name') returns the URL to related route.
+====
+
+you typehint something, symfony passes the right instance for you, through auto-wiring mechanism.
+where does those service instances come from ?
+every service is installed inside the: container, and it has an internal name, e.g: router, logger, twig, kernel, and filesystem.
+now bundles( which are symfony's plugin system), they prepare those services and install them inside the container.
+inside: config/bundles.php, you can find almost all installed bundles( or plugins ),
+the recipes system keeps updating this files everytime you install a new bundle.
+RECAP: symfony is a collection of services,
+bundles prepare those service objects and put them inside the container.
+e.g: monolog bundle provides the logger service.
+====
+
+
